@@ -32,3 +32,4 @@ Dockerfile
 .envrc
 Makefile
 public/assets/
+/chart

@@ -26,3 +26,5 @@ yarn-debug.log*
 coverage
 public/assets/
 .env
+
+/chart/charts/*.tgz

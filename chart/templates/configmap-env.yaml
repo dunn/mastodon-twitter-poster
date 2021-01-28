@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "crossposter.fullname" . }}-env
+  labels:
+    {{- include "crossposter.labels" . | nindent 4 }}
+data:
+  CROSSPOSTER_ADMIN_FEDI_ADDRESS: {{ .Values.crossposter.fedi.admin.address }}
+  CROSSPOSTER_ADMIN_FEDI_AT: {{ .Values.crossposter.fedi.admin.user }}
+  CROSSPOSTER_APP_NAME: {{ .Values.crossposter.name }}
+  CROSSPOSTER_DOMAIN: {{ .Values.crossposter.hostname }}
+  CROSSPOSTER_FEDI_ACCOUNT_ADDRESS: {{ .Values.crossposter.fedi.announce.address }}
+  CROSSPOSTER_FEDI_ACCOUNT_AT: {{ .Values.crossposter.fedi.announce.user }}
+  CROSSPOSTER_REPO: {{ .Values.crossposter.repo }}
+  DB_HOST: {{ template "crossposter.postgresql.fullname" . }}
+  DB_NAME: {{ .Values.postgresql.postgresqlDatabase }}
+  DB_PORT: "5432"
+  DB_USER: {{ .Values.postgresql.postgresqlUsername }}
+  POSTGRES_DB: {{ .Values.postgresql.postgresqlDatabase }}
+  POSTGRES_USER: {{ .Values.postgresql.postgresqlUsername }}
+  RACK_ENV: production
+  RAILS_ENV: production
+  REDIS_URL: redis://{{ template "crossposter.redis.fullname" . }}-master:6379/0
